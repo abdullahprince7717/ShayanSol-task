@@ -40,12 +40,13 @@ module.exports = {
         catch (error) {
             console.log(error)
             res.send({
-                error: err
+                error: error
             })
         }
     },
     getTodo: async (req, res) => {
         try {
+            console.log("req", req.body)
             const validate = await getTodoSchema.validateAsync(req.body);
             const getTodo = await todoService.getTodo(validate);
 
