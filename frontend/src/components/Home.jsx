@@ -7,9 +7,8 @@ import Todo from './Todo';
 function Home() {
     const [currentComponent, setCurrentComponent] = useState('Todo');
 
-    const changeHandler = (component, info) => {
+    const changeHandler = (component) => {
         setCurrentComponent(component)
-        setProfileInfo(info)
     }
     return (
         <div className='h-screen w-screen'>

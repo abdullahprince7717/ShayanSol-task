@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import axios from "axios";
-
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/userActions';
 function SignIn(props) {
-
+    const dispatch = useDispatch();
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
 
     });
-
     const handleInputChange = (field, value) => {
         setUserInfo((prevUserInfo) => ({
             ...prevUserInfo,
@@ -20,12 +20,14 @@ function SignIn(props) {
         e.preventDefault();
         await axios
             .post("http://localhost:3000/auth/signIn", userInfo)
-            .then(() => {
+            .then((response) => {
                 alert("User signed In successfully");
+                dispatch(setUser(response.data.response));
                 setUserInfo({
                     email: "",
                     password: "",
                 });
+                setUser(userInfo);
                 props.changeHandler('Todo');
 
             })

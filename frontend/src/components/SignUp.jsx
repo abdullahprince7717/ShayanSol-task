@@ -5,7 +5,7 @@ import axios from "axios";
 function SignUp(props) {
 
   const [userInfo, setUserInfo] = useState({
-    username: "",
+    userName: "",
     email: "",
     password: "",
 
@@ -26,7 +26,7 @@ function SignUp(props) {
         alert("User signed up successfully");
         setUserInfo({
           email: "",
-          username: "",
+          userName: "",
           password: "",
         });
         props.changeHandler('SignIn');
@@ -46,7 +46,7 @@ function SignUp(props) {
           <label className="block mb-2 text-sm font-medium text-gray-900 ">Your Username</label>
           <input
             type="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            onChange={(e) => handleInputChange('username', e.target.value)}
+            onChange={(e) => handleInputChange('userName', e.target.value)}
             value={userInfo.username}
             placeholder="name123"
           />
