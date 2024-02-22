@@ -2,8 +2,11 @@ var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
 var cors = require('cors')
+var authRouter = require('./routes/authRouter')
+var todoRouter = require('./routes/todoRouter')
 require('./bin/dbConnection')
 var app = express()
+
 
 
 app.use(logger('dev'));
@@ -16,9 +19,10 @@ app.use(cors(
     credentials: true
   }
 ))
-app.get("/", (req, res) => {
-  res.send("Welcome to Todo App");
-});
+
+app.use('/auth', authRouter)
+app.use('/todo', todoRouter)
+
 
 
 // catch 404 and forward to error handler

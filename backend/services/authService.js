@@ -2,19 +2,23 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 
 module.exports = {
-    signUp: async ({ email, username, password }) => {
+    signUp: async ({ email, userName, password }) => {
         try {
             const hashpassword = bcrypt.hashSync(password);
-            const user = new User({ email, username, password: hashpassword });
+            const user = new User({ email, userName, password: hashpassword });
             await user
                 .save()
                 .then(() => {
                     return {
                         response: user
                     }
+                })
+                .catch((error) => {
+                    return {
+                        error: error
+                    }
                 });
         } catch (error) {
-
             return {
                 error: error
             }

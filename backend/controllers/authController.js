@@ -16,17 +16,17 @@ const signInSchema = joi.object().keys({
 module.exports = {
     signUp: async (req, res) => {
         try {
-            // console.log("req", req.body)
             const validate = await signUpSchema.validateAsync(req.body);
             const signUp = await authService.signUp(validate);
-            if (signUp.error) {
+            console.log("signUp", signUp);
+            if (signUp?.error) {
                 res.send({
-                    error: signUp.error
+                    error: "signUp error"
                 })
             }
             else {
                 res.send({
-                    response: signUp.response
+                    response: "signUp response"
                 })
             }
         }
